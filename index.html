@@ -327,12 +327,48 @@
 
     </div>
 
+    <!-- JS fallback simple untuk autoplay -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('#services video');
 
+            videos.forEach(video => {
+                video.muted = true;
+                video.playsInline = true;
 
+                // Coba autoplay
+                video.play().catch(() => {
+                    // Autoplay gagal → tampilkan custom simple play button
+                    const overlay = document.createElement('div');
+                    overlay.textContent = "▶"; // simple mirip play button
+                    overlay.style.position = "absolute";
+                    overlay.style.top = "50%";
+                    overlay.style.left = "50%";
+                    overlay.style.transform = "translate(-50%, -50%)";
+                    overlay.style.color = "#fff";
+                    overlay.style.fontSize = "3rem";
+                    overlay.style.cursor = "pointer";
+                    overlay.style.zIndex = 5;
+                    overlay.style.background = "rgba(0,0,0,0.3)";
+                    overlay.style.borderRadius = "50%";
+                    overlay.style.width = "80px";
+                    overlay.style.height = "80px";
+                    overlay.style.display = "flex";
+                    overlay.style.alignItems = "center";
+                    overlay.style.justifyContent = "center";
+                    document.querySelector('#services').appendChild(overlay);
 
-
+                    overlay.addEventListener('click', () => {
+                        video.play();
+                        overlay.remove(); // hilangkan overlay langsung setelah tap
+                    });
+                });
+            });
+        });
+    </script>
 
 </section>
+
 
     <!-- works
     ================================================== -->

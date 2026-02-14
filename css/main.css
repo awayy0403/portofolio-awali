@@ -3644,7 +3644,6 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   overflow: hidden;
 }
 
-/* VIDEO BACKGROUND */
 #services .video-bg {
   position: absolute;
   top: 0;
@@ -3655,7 +3654,6 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   z-index: 0;
 }
 
-/* Desktop & Mobile Video (tetap ada di DOM) */
 .desktop-video {
   opacity: 1;
   transition: opacity 0.5s;
@@ -3666,20 +3664,20 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   transition: opacity 0.5s;
 }
 
-/* Overlay supaya teks terlihat, tapi tidak menghalangi tap */
+/* Shadow overlay tetap ada tapi pointer-events none supaya tap diterima */
 #services .shadow-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
-  pointer-events: none; /* biar tap video diterima browser */
+  pointer-events: none;
 }
 
-/* Konten di atas video */
 #services .row {
   position: relative;
   z-index: 2;
 }
+
 #services h2,
 #services h4,
 #services p {

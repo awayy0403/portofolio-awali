@@ -3666,12 +3666,13 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   transition: opacity 0.5s;
 }
 
-/* Overlay supaya teks terlihat */
+/* Overlay supaya teks terlihat, tapi tidak menghalangi tap */
 #services .shadow-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  pointer-events: none; /* biar tap video diterima browser */
 }
 
 /* Konten di atas video */
@@ -3683,23 +3684,6 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
 #services h4,
 #services p {
   color: #fff;
-}
-
-/* Garis merah di bawah heading */
-#services .section-heading {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
-}
-#services .section-heading::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #cf1767;
-  border-radius: 2px;
 }
 
 /* MOBILE VERSION */
@@ -3716,8 +3700,4 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
     opacity: 1;
     pointer-events: auto;
   }
-}
-
-video.hide-native-play-button::-webkit-media-controls-play-button {
-  display: none !important;
 }

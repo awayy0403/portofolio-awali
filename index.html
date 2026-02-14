@@ -327,40 +327,12 @@
 
     </div>
 
-    <!-- JS untuk sembunyikan tombol play bawaan begitu video mulai -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videos = document.querySelectorAll('#services video');
 
-            videos.forEach(video => {
-                video.muted = true;
-                video.playsInline = true;
 
-                // Autoplay sebisa mungkin
-                video.play().catch(() => {
-                    console.log('iOS menunda autoplay, tombol play bawaan muncul');
-                });
 
-                // Begitu video mulai, sembunyikan tombol play bawaan
-                video.addEventListener('play', () => {
-                    // Hanya untuk Safari / WebKit
-                    video.classList.add('hide-native-play-button');
-                });
-            });
-        });
-    </script>
+
 
 </section>
-
-
-
-
-
-
-
-
-
-
 
     <!-- works
     ================================================== -->

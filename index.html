@@ -326,7 +326,38 @@
         </div>
 
     </div>
+
+    <!-- Overlay play pojok kiri atas -->
+    <div id="video-overlay">▶</div>
+
+    <!-- JS fallback autoplay untuk iOS / mode daya rendah -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileVideo = document.querySelector('.mobile-video');
+            const overlay = document.getElementById('video-overlay');
+
+            if (window.innerWidth <= 768) {
+                mobileVideo.muted = true;
+                mobileVideo.playsInline = true;
+
+                // Coba autoplay
+                setTimeout(() => {
+                    mobileVideo.play().catch(() => {
+                        // Autoplay gagal → tampilkan overlay
+                        overlay.style.display = "flex";
+
+                        overlay.addEventListener('click', () => {
+                            mobileVideo.play();
+                            overlay.style.display = "none"; // langsung hilang satu tap
+                        }, { once: true });
+                    });
+                }, 100);
+            }
+        });
+    </script>
+
 </section>
+
 
     <!-- works
     ================================================== -->

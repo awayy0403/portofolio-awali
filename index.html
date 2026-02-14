@@ -327,13 +327,33 @@
 
     </div>
 
+    <!-- JS fallback untuk autoplay iOS -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('#services video');
             videos.forEach(video => {
                 video.muted = true;
+                video.playsInline = true;
+
+                // Coba autoplay
                 video.play().catch(() => {
-                    console.log('Autoplay gagal di iOS, menunggu interaksi pengguna');
+                    // Jika gagal, tampilkan overlay Tap to Play
+                    const overlay = document.createElement('div');
+                    overlay.innerHTML = "▶ Tap to Play";
+                    overlay.style.position = "absolute";
+                    overlay.style.top = "50%";
+                    overlay.style.left = "50%";
+                    overlay.style.transform = "translate(-50%, -50%)";
+                    overlay.style.color = "#fff";
+                    overlay.style.fontSize = "2rem";
+                    overlay.style.cursor = "pointer";
+                    overlay.style.zIndex = 5;
+                    document.querySelector('#services').appendChild(overlay);
+
+                    overlay.addEventListener('click', () => {
+                        video.play();
+                        overlay.remove();
+                    });
                 });
             });
         });

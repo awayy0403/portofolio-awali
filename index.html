@@ -327,10 +327,14 @@
 
     </div>
 
+    <!-- overlay play -->
+    <div id="video-overlay">▶</div>
+
     <!-- JS fallback simple untuk autoplay -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('#services video');
+            const overlay = document.getElementById('video-overlay');
 
             videos.forEach(video => {
                 video.muted = true;
@@ -338,28 +342,12 @@
 
                 setTimeout(() => {
                     video.play().catch(() => {
-                        // overlay custom di pojok kiri atas
-                        const overlay = document.createElement('div');
-                        overlay.textContent = "▶";
-                        overlay.style.position = "absolute";
-                        overlay.style.top = "10px";
-                        overlay.style.left = "10px";
-                        overlay.style.color = "#fff";
-                        overlay.style.fontSize = "2rem";
-                        overlay.style.cursor = "pointer";
-                        overlay.style.zIndex = 5;
-                        overlay.style.background = "rgba(0,0,0,0)"; // transparan
-                        overlay.style.width = "40px";
-                        overlay.style.height = "40px";
+                        // overlay tetap muncul jika autoplay gagal
                         overlay.style.display = "flex";
-                        overlay.style.alignItems = "center";
-                        overlay.style.justifyContent = "center";
-
-                        document.querySelector('#services').appendChild(overlay);
 
                         overlay.addEventListener('click', () => {
                             video.play();
-                            overlay.remove();
+                            overlay.style.display = "none";
                         }, { once: true });
                     });
                 }, 100);
@@ -368,6 +356,7 @@
     </script>
 
 </section>
+
 
 
 

@@ -3644,6 +3644,7 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   overflow: hidden;
 }
 
+/* VIDEO BACKGROUND */
 #services .video-bg {
   position: absolute;
   top: 0;
@@ -3654,30 +3655,19 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   z-index: 0;
 }
 
-.desktop-video {
-  opacity: 1;
-  transition: opacity 0.5s;
-}
-.mobile-video {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s;
-}
-
-/* Shadow overlay tetap ada tapi pointer-events none supaya tap diterima */
+/* Overlay supaya teks terlihat */
 #services .shadow-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
-  pointer-events: none;
 }
 
+/* Konten di atas video */
 #services .row {
   position: relative;
   z-index: 2;
 }
-
 #services h2,
 #services h4,
 #services p {
@@ -3690,12 +3680,22 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
     min-height: 100vh;
     padding: 80px 20px;
   }
-  .desktop-video {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .mobile-video {
-    opacity: 1;
-    pointer-events: auto;
-  }
+}
+
+/* Overlay custom play button di pojok kiri atas */
+#video-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  display: none; /* awalnya hidden, muncul kalau autoplay gagal */
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 5;
+  background: #cf1767; /* warna overlay */
+  border-radius: 50%;
 }

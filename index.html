@@ -340,7 +340,7 @@
                 video.play().catch(() => {
                     // Autoplay gagal → tampilkan custom simple play button
                     const overlay = document.createElement('div');
-                    overlay.textContent = "▶"; // simple mirip play button
+                    overlay.textContent = "▶"; // icon play
                     overlay.style.position = "absolute";
                     overlay.style.top = "50%";
                     overlay.style.left = "50%";
@@ -349,18 +349,21 @@
                     overlay.style.fontSize = "3rem";
                     overlay.style.cursor = "pointer";
                     overlay.style.zIndex = 5;
-                    overlay.style.background = "rgba(0,0,0,0.3)";
-                    overlay.style.borderRadius = "50%";
+                    
+                    // overlay transparan tapi clickable
+                    overlay.style.background = "rgba(0,0,0,0)"; 
                     overlay.style.width = "80px";
                     overlay.style.height = "80px";
                     overlay.style.display = "flex";
                     overlay.style.alignItems = "center";
                     overlay.style.justifyContent = "center";
+                    overlay.style.borderRadius = "50%";
+
                     document.querySelector('#services').appendChild(overlay);
 
                     overlay.addEventListener('click', () => {
-                        video.play();
-                        overlay.remove(); // hilangkan overlay langsung setelah tap
+                        video.play();      // mainkan video
+                        overlay.remove();  // hilangkan overlay langsung setelah tap 1x
                     });
                 });
             });

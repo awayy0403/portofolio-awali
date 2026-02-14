@@ -327,47 +327,23 @@
 
     </div>
 
-    <!-- JS fallback untuk autoplay iOS -->
+    <!-- JS fallback untuk autoplay iOS (tanpa overlay) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('#services video');
-
             videos.forEach(video => {
                 video.muted = true;
                 video.playsInline = true;
-
                 // Coba autoplay
                 video.play().catch(() => {
-                    // Jika autoplay gagal, tampilkan overlay Tap to Play
-                    const overlay = document.createElement('div');
-                    overlay.innerHTML = "";
-                    overlay.style.position = "absolute";
-                    overlay.style.top = "50%";
-                    overlay.style.left = "50%";
-                    overlay.style.transform = "translate(-50%, -50%)";
-                    overlay.style.color = "#fff";
-                    overlay.style.fontSize = "2rem";
-                    overlay.style.cursor = "pointer";
-                    overlay.style.zIndex = 5;
-                    document.querySelector('#services').appendChild(overlay);
-
-                    overlay.addEventListener('click', () => {
-                        video.play();      // mainkan video
-                        overlay.remove();  // hilangkan overlay langsung
-                    });
+                    // autoplay gagal di iOS, tapi tidak muncul overlay
+                    console.log('iOS menunda autoplay, user perlu tap video');
                 });
             });
         });
     </script>
 
 </section>
-
-
-
-
-
-
-
 
 
 

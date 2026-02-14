@@ -3655,12 +3655,24 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   z-index: 0;
 }
 
-/* Overlay supaya teks terlihat */
+/* Desktop & Mobile Video (tetap ada di DOM) */
+.desktop-video {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.mobile-video {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+/* Overlay supaya teks terlihat, tapi tidak menghalangi tap */
 #services .shadow-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  pointer-events: none; /* biar tap video diterima browser */
 }
 
 /* Konten di atas video */
@@ -3680,22 +3692,12 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
     min-height: 100vh;
     padding: 80px 20px;
   }
-}
-
-/* Overlay custom play button di pojok kiri atas */
-#video-overlay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 40px;
-  height: 40px;
-  display: none; /* awalnya hidden, muncul kalau autoplay gagal */
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 5;
-  background: #cf1767; /* warna overlay */
-  border-radius: 50%;
+  .desktop-video {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .mobile-video {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

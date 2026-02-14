@@ -1468,28 +1468,21 @@ input::-moz-focus-inner {
   text-align: center;
 }
 
-.section-heading {
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
-  font-size: 1.7rem;
-  line-height: 1.176;
-  text-transform: uppercase;
-  letter-spacing: 0.5rem;
-  margin-top: 0;
-  padding-top: 3.2rem;
-  margin-bottom: 8rem;
+#services .section-heading {
   position: relative;
+  display: inline-block; /* biar line sesuai panjang teks */
+  padding-bottom: 10px; /* jarak antara teks & line */
 }
 
-.section-heading::before {
+#services .section-heading::after {
   content: "";
-  display: block;
-  width: 150px;
-  height: 2px;
-  background-color: #cf1767;
   position: absolute;
-  top: 0;
   left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px; /* tebal garis */
+  background-color: #cf1767; /* warna garis */
+  border-radius: 2px; /* opsional, biar ujung garis halus */
 }
 
 .section-heading--centerbottom {
@@ -3662,12 +3655,15 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   z-index: 0;
 }
 
-/* Desktop default */
+/* Desktop & Mobile Video (tetap ada di DOM) */
 .desktop-video {
-  display: block;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 .mobile-video {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
 }
 
 /* Overlay supaya teks terlihat */
@@ -3696,9 +3692,11 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
     padding: 80px 20px;
   }
   .desktop-video {
-    display: none !important;
+    opacity: 0;
+    pointer-events: none;
   }
   .mobile-video {
-    display: block !important;
+    opacity: 1;
+    pointer-events: auto;
   }
 }

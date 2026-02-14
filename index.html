@@ -327,7 +327,20 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('#services video');
+            videos.forEach(video => {
+                video.muted = true;
+                video.play().catch(() => {
+                    console.log('Autoplay gagal di iOS, menunggu interaksi pengguna');
+                });
+            });
+        });
+    </script>
+
 </section>
+
 
 
 

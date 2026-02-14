@@ -340,7 +340,7 @@
                 video.play().catch(() => {
                     // Jika autoplay gagal, tampilkan overlay Tap to Play
                     const overlay = document.createElement('div');
-                    overlay.innerHTML = "▶";
+                    overlay.innerHTML = "";
                     overlay.style.position = "absolute";
                     overlay.style.top = "50%";
                     overlay.style.left = "50%";
@@ -361,6 +361,7 @@
     </script>
 
 </section>
+
 
 
 

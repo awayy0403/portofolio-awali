@@ -3685,6 +3685,23 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
   color: #fff;
 }
 
+/* Garis merah di bawah heading */
+#services .section-heading {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+#services .section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #cf1767;
+  border-radius: 2px;
+}
+
 /* MOBILE VERSION */
 @media (max-width: 768px) {
   #services {

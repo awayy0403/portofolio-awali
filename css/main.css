@@ -3717,3 +3717,7 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
     pointer-events: auto;
   }
 }
+
+video.hide-native-play-button::-webkit-media-controls-play-button {
+  display: none !important;
+}

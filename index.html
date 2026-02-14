@@ -326,40 +326,7 @@
         </div>
 
     </div>
-
-    <!-- overlay play -->
-    <div id="video-overlay">▶</div>
-
-    <!-- JS fallback simple untuk autoplay -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videos = document.querySelectorAll('#services video');
-            const overlay = document.getElementById('video-overlay');
-
-            videos.forEach(video => {
-                video.muted = true;
-                video.playsInline = true;
-
-                setTimeout(() => {
-                    video.play().catch(() => {
-                        // overlay tetap muncul jika autoplay gagal
-                        overlay.style.display = "flex";
-
-                        overlay.addEventListener('click', () => {
-                            video.play();
-                            overlay.style.display = "none";
-                        }, { once: true });
-                    });
-                }, 100);
-            });
-        });
-    </script>
-
 </section>
-
-
-
-
 
     <!-- works
     ================================================== -->

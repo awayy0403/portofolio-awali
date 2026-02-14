@@ -327,7 +327,7 @@
 
     </div>
 
-    <!-- JS fallback simple untuk autoplay -->
+    <!-- JS fallback simple untuk autoplay 1x tap -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('#services video');
@@ -336,41 +336,46 @@
                 video.muted = true;
                 video.playsInline = true;
 
-                // Coba autoplay
-                video.play().catch(() => {
-                    // Autoplay gagal → tampilkan custom simple play button
-                    const overlay = document.createElement('div');
-                    overlay.textContent = "▶"; // icon play
-                    overlay.style.position = "absolute";
-                    overlay.style.top = "50%";
-                    overlay.style.left = "50%";
-                    overlay.style.transform = "translate(-50%, -50%)";
-                    overlay.style.color = "#fff";
-                    overlay.style.fontSize = "3rem";
-                    overlay.style.cursor = "pointer";
-                    overlay.style.zIndex = 5;
-                    
-                    // overlay transparan tapi clickable
-                    overlay.style.background = "rgba(0,0,0,0)"; 
-                    overlay.style.width = "80px";
-                    overlay.style.height = "80px";
-                    overlay.style.display = "flex";
-                    overlay.style.alignItems = "center";
-                    overlay.style.justifyContent = "center";
-                    overlay.style.borderRadius = "50%";
+                // Delay sedikit supaya video siap
+                setTimeout(() => {
+                    video.play().catch(() => {
+                        // Autoplay gagal → overlay custom
+                        const overlay = document.createElement('div');
+                        overlay.textContent = "▶"; // icon play putih
+                        overlay.style.position = "absolute";
+                        overlay.style.top = "50%";
+                        overlay.style.left = "50%";
+                        overlay.style.transform = "translate(-50%, -50%)";
+                        overlay.style.color = "#fff";
+                        overlay.style.fontSize = "3rem";
+                        overlay.style.cursor = "pointer";
+                        overlay.style.zIndex = 5;
+                        
+                        // overlay transparan tapi clickable
+                        overlay.style.background = "rgba(0,0,0,0)";
+                        overlay.style.width = "80px";
+                        overlay.style.height = "80px";
+                        overlay.style.display = "flex";
+                        overlay.style.alignItems = "center";
+                        overlay.style.justifyContent = "center";
+                        overlay.style.borderRadius = "50%";
+                        overlay.style.pointerEvents = "auto"; // pastikan bisa klik
+                        
+                        document.querySelector('#services').appendChild(overlay);
 
-                    document.querySelector('#services').appendChild(overlay);
-
-                    overlay.addEventListener('click', () => {
-                        video.play();      // mainkan video
-                        overlay.remove();  // hilangkan overlay langsung setelah tap 1x
+                        // **1 tap langsung play + hilang**
+                        overlay.addEventListener('click', () => {
+                            video.play();
+                            overlay.remove();
+                        }, { once: true }); // event listener hanya sekali
                     });
-                });
+                }, 100); // delay 100ms biar video siap
             });
         });
     </script>
 
 </section>
+
 
 
     <!-- works

@@ -3726,6 +3726,5 @@ html[data-useragent*="rv:11.0"] .ss-go-top::after {
 #services {
   position: relative;
   min-height: 100vh;
-  background: url("../images/portfolio/spider.jpg") no-repeat center
-    center/cover;
+  background: url("../images/portfolio/black.jpg") no-repeat center center/cover;
 }
